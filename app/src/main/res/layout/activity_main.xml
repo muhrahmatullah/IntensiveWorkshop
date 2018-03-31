@@ -8,5 +8,12 @@
     android:padding="8dp"
     tools:context="com.rahmat.app.intensiveworkshop.MainActivity">
 
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/makanan_recycler">
+
+    </android.support.v7.widget.RecyclerView>
+
 
 </LinearLayout>
