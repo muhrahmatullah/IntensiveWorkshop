@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp"
+    tools:context="com.rahmat.app.intensiveworkshop.MainActivity">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_white"
+        android:background="@color/color_blue"
+        android:onClick="btnToast"
+        android:text="@string/toast"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingTop="40dp"
+        android:paddingBottom="40dp"
+        android:textSize="150sp"
+        android:id="@+id/txtCount"
+        android:background="#ffe100"
+        android:textColor="@color/color_blue"
+        android:text="0"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_white"
+        android:background="@color/color_blue"
+        android:id="@+id/btnCount"
+        android:text="count"/>
+
+</LinearLayout>
