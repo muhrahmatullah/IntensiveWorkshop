@@ -19,12 +19,22 @@ public class MakananAdapter extends RecyclerView.Adapter<MakananAdapter.MakananV
 
     List<Makanan> makanan;
     Context context;
+    MakananClickListener makananClickListener;
 
-    public MakananAdapter(List<Makanan> makanan, Context context) {
+    public interface MakananClickListener{
+        void onItemClicked(int position);
+    }
+
+    public MakananAdapter(MakananClickListener makananClickListener) {
+        this.makananClickListener = makananClickListener;
+    }
+
+    public void setData(List<Makanan> makanan, Context context){
         this.makanan = makanan;
         this.context = context;
     }
 
+    //untuk menentukan itemview yg ingin digunakan untuk populate data
     @Override
     public MakananViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_makanan, parent, false);
@@ -37,7 +47,7 @@ public class MakananAdapter extends RecyclerView.Adapter<MakananAdapter.MakananV
         Makanan m = makanan.get(position);
 
         holder.txtTitle.setText(m.getTitle());
-        holder.txtPrice.setText(m.getPrice());
+        holder.txtPrice.setText("Rp."+m.getPrice());
         holder.imgFood.setImageResource(m.getImage());
     }
 
@@ -46,7 +56,8 @@ public class MakananAdapter extends RecyclerView.Adapter<MakananAdapter.MakananV
         return makanan.size();
     }
 
-    public class MakananViewHolder extends RecyclerView.ViewHolder{
+
+    public class MakananViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         ImageView imgFood;
         TextView txtTitle, txtPrice;
@@ -57,7 +68,14 @@ public class MakananAdapter extends RecyclerView.Adapter<MakananAdapter.MakananV
             imgFood = itemView.findViewById(R.id.item_image_food);
             txtTitle = itemView.findViewById(R.id.item_title);
             txtPrice = itemView.findViewById(R.id.item_price);
+            itemView.setOnClickListener(this);
 
+        }
+
+        @Override
+        public void onClick(View v) {
+            int clickedPosition = getAdapterPosition();
+            makananClickListener.onItemClicked(clickedPosition);
         }
     }
 

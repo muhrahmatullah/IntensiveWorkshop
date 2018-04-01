@@ -1,5 +1,6 @@
 package com.rahmat.app.intensiveworkshop;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -14,7 +15,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MakananAdapter.MakananClickListener{
 
     List<Makanan> makananList = new ArrayList<>();
     RecyclerView recyclerView;
@@ -34,10 +35,10 @@ public class MainActivity extends AppCompatActivity {
                 layoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
         prepareData();
-        makananAdapter = new MakananAdapter(makananList, this);
+        makananAdapter = new MakananAdapter( this);
+        makananAdapter.setData(makananList, getApplicationContext());
         recyclerView.setAdapter(makananAdapter);
     }
-
 
 
     public void prepareData(){
@@ -51,5 +52,24 @@ public class MainActivity extends AppCompatActivity {
         makananList.add(makanan);
         makanan = new Makanan(R.drawable.sup_ayam, "21,000", "Sup Ayam Lezat");
         makananList.add(makanan);
+        makanan = new Makanan(R.drawable.sup_ayam, "21,000", "Sup Ayam Lezat");
+        makananList.add(makanan);
+        makanan = new Makanan(R.drawable.sup_ayam, "21,000", "Sup Ayam Lezat");
+        makananList.add(makanan);
+    }
+
+    @Override
+    public void onItemClicked(int position) {
+        //Toast.makeText(this, "Makanan yg kamu pilih "+makananList.get(position).
+          //      getTitle(), Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(this, DetailMakananActivity.class);
+
+        intent.putExtra("nama_makanan", makananList.get(position).getTitle());
+        intent.putExtra("harga_makanan", makananList.get(position).getPrice());
+        intent.putExtra("gambar_makanan", makananList.get(position).getImage());
+
+        startActivity(intent);
+
     }
 }
